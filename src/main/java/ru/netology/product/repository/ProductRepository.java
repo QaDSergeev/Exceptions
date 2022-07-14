@@ -16,7 +16,7 @@ public class ProductRepository {
 
     public void add(Product product) {
 
-        if (!Objects.isNull(findProductById(product.getId()))) {
+        if (! Objects.isNull(findProductById(product.getId()))) {
 
             throw new AlreadyExistsException("Product with id \"" + product.getId() + "\" already exists !");
         }

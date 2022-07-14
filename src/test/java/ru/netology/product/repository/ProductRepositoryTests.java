@@ -1,5 +1,6 @@
 package ru.netology.product.repository;
 
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 
 import ru.netology.product.Book;
@@ -44,19 +45,7 @@ public class ProductRepositoryTests {
         repository.add(book2);
         repository.add(smartphone1);
 
-        boolean isExceptionThrow = false;
-
-        try {
-
-            repository.add(book3);
-
-        } catch (AlreadyExistsException exception) {
-
-            exception.printStackTrace();
-            isExceptionThrow = true;
-        }
-
-        assertTrue(isExceptionThrow);
+        assertThrows(AlreadyExistsException.class, () -> repository.add(book3));
     }
 
     @Test
@@ -123,18 +112,6 @@ public class ProductRepositoryTests {
         repository.add(smartphone1);
         repository.add(smartphone2);
 
-        boolean isThrowException = false;
-
-        try {
-
-            repository.removeProduct(6);
-
-        } catch (NotFoundException notFoundException) {
-
-            notFoundException.printStackTrace();
-            isThrowException = true;
-        }
-
-        assertTrue(isThrowException);
+        assertThrows(NotFoundException.class, () -> repository.removeProduct(6));
     }
 }
